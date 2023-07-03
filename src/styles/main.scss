@@ -1,0 +1,15 @@
+@import "./variables";
+@import "./webpos";
+@import "./home";
+@import "./navbar";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

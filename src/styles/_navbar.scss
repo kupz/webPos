@@ -1,0 +1,12 @@
+.navbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  .navbar-menu {
+    display: flex;
+    gap: 2rem;
+    cursor: pointer;
+    color: $primary-color;
+  }
+}

@@ -1,11 +1,9 @@
-import logo from "./logo.svg";
-import "./App.css";
+import Webpos from "./pages/webpos/Webpos";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello from the scratch</h1>
-      <div>wew</div>
+      <Webpos />
     </div>
   );
 }
