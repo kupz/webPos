@@ -4,6 +4,22 @@
   height: 100vh;
   flex-direction: column;
 
+  .position-relative {
+    position: relative;
+  }
+  .expandable-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    border: 1px solid black;
+    padding-top: 3rem;
+    transform: translateY(-18%);
+    transition: all ease 1s;
+    width: 200px;
+    display: none;
+  }
+
   .webpos-content {
     display: flex;
     width: 100%;
@@ -19,7 +35,25 @@
         display: flex;
         width: 100%;
         justify-content: space-between;
-        border: 1px solid black;
+        align-items: center;
+        span {
+          padding: 10px;
+          cursor: pointer;
+        }
+        .searchBar {
+          display: flex;
+          align-items: center;
+          background-color: rgb(196, 194, 194);
+          border-bottom: 2px solid black;
+
+          input {
+            border: 0;
+            outline: none;
+            padding: 1px;
+            background-color: inherit;
+            width: 15rem;
+          }
+        }
       }
     }
 
@@ -34,8 +68,13 @@
         display: flex;
         width: 100%;
         justify-content: space-between;
+        align-items: center;
         padding: 1rem;
-        border: 1px solid black;
+        font-weight: 700;
+        border-bottom: 1px solid gray;
+        span {
+          cursor: pointer;
+        }
       }
 
       .order-list {
@@ -50,9 +89,10 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        border: 1px solid black;
+        border-top: 1px solid black;
         padding: 1rem;
         gap: 10px;
+        font-weight: 700;
       }
     }
   }
