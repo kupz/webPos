@@ -13,11 +13,16 @@
     gap: 10px;
     position: absolute;
     border: 1px solid black;
-    padding-top: 3rem;
     transform: translateY(-18%);
     transition: all ease 1s;
     width: 200px;
     display: none;
+    background-color: beige;
+    span {
+      &:hover {
+        background-color: gray;
+      }
+    }
   }
 
   .webpos-content {
@@ -94,6 +99,44 @@
         gap: 10px;
         font-weight: 700;
       }
+    }
+  }
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+  div {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid black;
+    width: 200px;
+    height: 270px;
+    background-color: greenyellow;
+    overflow: hidden;
+    h4 {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    p {
+      margin-top: 5px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    cursor: pointer;
+
+    &:active {
+      filter: brightness(80%);
+    }
+    img {
+      max-width: 100%;
+      aspect-ratio: 1/1;
     }
   }
 }
