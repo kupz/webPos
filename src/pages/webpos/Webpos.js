@@ -6,9 +6,20 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import ProductCard from "./ProductCard";
 import ReceiptItem from "./ReceiptItem";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleProductModal } from "../../redux/slice/modalTriggerSlice";
 
 export default function Webpos() {
   const [menu, setMenu] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleAddProduct = () => {
+    setMenu(!menu);
+    dispatch(toggleProductModal());
+  };
+
+  const products = useSelector((state) => state.products);
+
   return (
     <div className="webpos">
       <div className="webpos-content">
@@ -38,7 +49,7 @@ export default function Webpos() {
                   <CloseIcon />
                 </span>
                 <span>Dashboard</span>
-                <span>Add Product</span>
+                <span onClick={handleAddProduct}>Add Product</span>
                 <span></span>
               </div>
             </span>
@@ -51,18 +62,16 @@ export default function Webpos() {
             </span>
           </div>
           <div className="product-container">
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
+            {products.map((item) => {
+              return (
+                <ProductCard
+                  key={item.id}
+                  name={item.name}
+                  description={item.desc}
+                  price={item.price}
+                />
+              );
+            })}
           </div>
         </div>
 
