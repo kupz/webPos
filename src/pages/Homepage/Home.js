@@ -1,9 +1,11 @@
+import Navbar from "../gloabalComponents/Navbar";
 import Webpos from "../webpos/Webpos";
 
 export default function Home() {
   return (
     <div className="homepage">
-      <Webpos />
+      <Navbar />
+      <h1>hello from home</h1>
     </div>
   );
 }

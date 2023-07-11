@@ -36,10 +36,22 @@ export default function ModalAddProduct() {
   };
 
   const handleOnchangePrice = (e) => {
-    if (!isNaN(e.target.value)) {
-      setPrice(parseInt(e.target.value));
+    const inputValue = e.target.value.trim();
+
+    if (inputValue === "") {
+      setPrice(0);
+    } else if (!isNaN(inputValue)) {
+      setPrice(parseInt(inputValue));
     }
   };
+
+  // const handleOnchangePrice = (e) => {
+  //   if (!isNaN(e.target.value)) {
+  //     setPrice(parseInt(e.target.value));
+  //   } else {
+  //     setPrice(0);
+  //   }
+  // };
 
   const handleOnSubmit = () => {
     if (sku === "") {

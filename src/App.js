@@ -4,6 +4,8 @@ import ModalAddProduct from "./pages/webpos/ModalAddproduct";
 import Webpos from "./pages/webpos/Webpos";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Home from "./pages/Homepage/Home";
 
 function App() {
   const modal = useSelector((state) => state.modal.addProduct);
@@ -13,7 +15,9 @@ function App() {
       <ToastContainer />
       {modal ? <ModalAddProduct /> : null}
 
-      <Webpos />
+      {/* <Webpos /> */}
+      {/* <Dashboard /> */}
+      <Home />
     </div>
   );
 }
