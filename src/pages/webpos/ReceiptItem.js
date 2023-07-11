@@ -1,25 +1,36 @@
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  updateOrder,
+  updateOrderCustom,
+  updateOrderDecrement,
+} from "../../redux/slice/orderSlice";
 
 export default function ReceiptItem(props) {
-  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+  const orderList = useSelector((state) => state.orders);
+  const quantity = () => {
+    const findItem = orderList.find((item) => item.id === props.id);
+    return findItem.qty;
+  };
+  console.log(quantity());
 
   const handleIncrement = () => {
-    setQuantity((prevState) => {
-      return prevState + 1;
-    });
+    dispatch(updateOrder(props.id));
   };
 
   const handleDecrement = () => {
-    setQuantity((prevState) => {
-      return prevState - 1;
-    });
+    dispatch(updateOrderDecrement(props.id));
   };
 
   const handleOnchange = (e) => {
     if (!isNaN(e.target.value)) {
-      setQuantity(parseInt(e.target.value));
+      dispatch(
+        updateOrderCustom({ id: props.id, qty: parseInt(e.target.value) })
+      );
+    } else {
+      dispatch(updateOrderCustom({ id: props.id, qty: 1 }));
     }
   };
 
@@ -50,16 +61,16 @@ export default function ReceiptItem(props) {
             border: "0",
             outline: "none",
           }}
-          value={quantity}
+          value={quantity()}
           onChange={handleOnchange}
         />
         <span onClick={handleDecrement} style={{ cursor: "pointer" }}>
           <ArrowDropDownIcon />
         </span>
       </span>
-      <p>sample</p>
-      <p>199</p>
-      <p>1000</p>
+      <h5>{props.sku}</h5>
+      <h5>{props.price.toLocaleString()}</h5>
+      <h5>{(props.price * quantity()).toLocaleString()}</h5>
     </div>
   );
 }

@@ -2,16 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const productSlice = createSlice({
   name: "products",
-  initialState: [
-    {
-      id: 1,
-      sku: "hs100",
-      name: "Steel Series 221",
-      desc: "Some Description here",
-      barcode: 12321321,
-      price: 199,
-    },
-  ],
+  initialState: [],
   reducers: {
     addProduct: (state, action) => {
       let newProduct = action.payload;

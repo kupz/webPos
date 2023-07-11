@@ -4,8 +4,10 @@ import { toast } from "react-toastify";
 import { addProduct } from "../../redux/slice/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleProductModal } from "../../redux/slice/modalTriggerSlice";
+import ImageUploader from "./ImageUploader";
 
 export default function ModalAddProduct() {
+  const [imageData, setImageData] = useState(null);
   const [sku, setSku] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -35,7 +37,7 @@ export default function ModalAddProduct() {
 
   const handleOnchangePrice = (e) => {
     if (!isNaN(e.target.value)) {
-      setPrice(e.target.value);
+      setPrice(parseInt(e.target.value));
     }
   };
 
@@ -69,6 +71,7 @@ export default function ModalAddProduct() {
         desc: description,
         barcode: barcode,
         price: price,
+        img: imageData,
       };
 
       dispatch(addProduct(newProduct));
@@ -86,6 +89,7 @@ export default function ModalAddProduct() {
     <div className="addproduct-modal-container">
       <div className="addproduct-form-container">
         <h2>Add Product</h2>
+        <ImageUploader setImageData={setImageData} />
         <TextField
           id="outlined-basic"
           label="SKU code"

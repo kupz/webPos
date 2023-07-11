@@ -9,9 +9,12 @@ import ReceiptItem from "./ReceiptItem";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleProductModal } from "../../redux/slice/modalTriggerSlice";
 
+import defaultImg from "../../assets/productDefault.png";
+
 export default function Webpos() {
   const [menu, setMenu] = useState(false);
   const dispatch = useDispatch();
+  const orderList = useSelector((state) => state.orders);
 
   const handleAddProduct = () => {
     setMenu(!menu);
@@ -19,6 +22,14 @@ export default function Webpos() {
   };
 
   const products = useSelector((state) => state.products);
+
+  const getOrderSum = () => {
+    let sum = 0;
+    orderList.forEach((item) => {
+      sum += item.qty * item.price;
+    });
+    return sum.toLocaleString();
+  };
 
   return (
     <div className="webpos">
@@ -69,6 +80,9 @@ export default function Webpos() {
                   name={item.name}
                   description={item.desc}
                   price={item.price}
+                  sku={item.sku}
+                  id={item.id}
+                  img={item.img ? item.img : defaultImg}
                 />
               );
             })}
@@ -83,10 +97,19 @@ export default function Webpos() {
             </span>
           </div>
           <div className="order-list">
-            <ReceiptItem />
+            {orderList.map((item) => {
+              return (
+                <ReceiptItem
+                  sku={item.sku}
+                  price={item.price}
+                  key={item.id}
+                  id={item.id}
+                />
+              );
+            })}
           </div>
           <div className="preview">
-            <span>TOTAL</span>
+            <span>TOTAL : {getOrderSum()} </span>
             <span>CASH</span>
             <span>CHANGE</span>
           </div>
